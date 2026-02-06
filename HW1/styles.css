@@ -1,0 +1,139 @@
+/* 
+    https://coolors.co/cad2c5-84a98c-52796f-354f52-2f3e46
+*/
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+section {
+    background-color: #fff;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+/* 
+#syllabus p {
+  margin-bottom: 1.5rem;
+} */
+ 
+#syllabus h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#syllabus h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+ul.syllabus-desc {
+    margin-left: 2rem;
+}
+
+ol.assignment-desc {
+    margin-left: 2rem;
+    list-style-type: decimal;
+}
+
+ol.assignment-desc ol {
+    list-style-type: lower-alpha;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.schedule-table tr:hover {
+    background-color: transparent;
+}
+
+.paper-table tr:hover {
+    background-color: transparent;
+}
+
+.paper-table th:nth-child(2),
+.paper-table td:nth-child(2) {
+    width: 80px;
+}
+
+.sub-item td {
+    padding-left: 2rem;
+    font-size: 0.95em;
+}
+
+.syllabus-desc {
+    margin-bottom: 1rem;
+}
