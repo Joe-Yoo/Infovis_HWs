@@ -82,72 +82,77 @@
             <p class="syllabus-desc">Final course grades may be curved (but not always). Grades of individual assignments will not be curved. If a curve is given, it will only be curved up (not down). Any regrade requests should be emailed directly to the TAs and need to describe the detailed concern for the regrade.</p>
             <p class="syllabus-desc">Grading distributions for this course are:</p>
 
-            <table class="grading-table">
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Weight</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>HW Assignments</strong></td>
-                        <td><strong>30%</strong></td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>HW1: Web Stack</em></td>
-                        <td>3%</td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>HW2: D3 Charts</em></td>
-                        <td>5%</td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>HW3: Interaction</em></td>
-                        <td>7%</td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>HW4: Putting it all together</em></td>
-                        <td>15%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Reading Presentation</strong></td>
-                        <td><strong>15%</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Reading Reflection</strong></td>
-                        <td><strong>10%</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Research Prototype</strong></td>
-                        <td><strong>35%</strong></td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>Initial Ideation & Literature Review</em></td>
-                        <td>5%</td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>Polished Ideation & Expanded Literature Review</em></td>
-                        <td>5%</td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>Method & Plan</em></td>
-                        <td>5%</td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>Prototype 1</em></td>
-                        <td>10%</td>
-                    </tr>
-                    <tr class="sub-item">
-                        <td>- <em>Prototype Final</em></td>
-                        <td>10%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Class Engagement</strong></td>
-                        <td><strong>10%</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="grading-visualization">
+                <svg width="100%" height="220">
+                    <rect x="0" y="0" width="30%" height="45%" fill="#5B867C" stroke="black" stroke-width="2"/>
+                    <rect x="0" y="45%" width="3%" height="45%" fill="#79A49A" stroke="black" stroke-width="2"/>
+                    <rect x="3%" y="45%" width="5%" height="45%" fill="#79A49A" stroke="black" stroke-width="2"/>
+                    <rect x="8%" y="45%" width="7%" height="45%" fill="#79A49A" stroke="black" stroke-width="2"/>
+                    <rect x="15%" y="45%" width="15%" height="45%" fill="#79A49A" stroke="black" stroke-width="2"/>
+                    
+                    <rect x="30%" y="0" width="15%" height="45%" fill="#4A6D65" stroke="black" stroke-width="2"/>
+                    <rect x="45%" y="0" width="10%" height="45%" fill="#496C6F" stroke="black" stroke-width="2"/>
+
+                    <rect x="55%" y="0" width="35%" height="45%" fill="#526C7A" stroke="black" stroke-width="2"/>
+                    <rect x="55%" y="45%" width="5%" height="45%" fill="#6C8C9D" stroke="black" stroke-width="2"/>
+                    <rect x="60%" y="45%" width="5%" height="45%" fill="#6C8C9D" stroke="black" stroke-width="2"/>
+                    <rect x="65%" y="45%" width="5%" height="45%" fill="#6C8C9D" stroke="black" stroke-width="2"/>
+                    <rect x="70%" y="45%" width="10%" height="45%" fill="#6C8C9D" stroke="black" stroke-width="2"/>
+                    <rect x="80%" y="45%" width="10%" height="45%" fill="#6C8C9D" stroke="black" stroke-width="2"/>
+
+                    <rect x="90%" y="0" width="10%" height="45%" fill="#415662" stroke="black" stroke-width="2"/>
+
+                    <text x="15%" y="15%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">HW</text>
+                    <text x="15%" y="25%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Assignments</text>
+                    <text x="15%" y="35%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">30%</text>
+                    
+                    <text x="37.5%" y="15%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Reading</text>
+                    <text x="37.5%" y="25%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Presentation</text>
+                    <text x="37.5%" y="35%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">15%</text>
+                    
+                    <text x="50%" y="15%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Reading</text>
+                    <text x="50%" y="25%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Reflection</text>
+                    <text x="50%" y="35%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">10%</text>
+                    
+                    <text x="72.5%" y="15%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Research</text>
+                    <text x="72.5%" y="25%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Prototype</text>
+                    <text x="72.5%" y="35%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">35%</text>
+                    
+                    <text x="95%" y="15%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Class</text>
+                    <text x="95%" y="25%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">Engagement</text>
+                    <text x="95%" y="35%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">10%</text>
+                    
+                    <text x="1.5%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">1</text>
+                    <text x="1.5%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">3%</text>
+                    
+                    <text x="5.5%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">2</text>
+                    <text x="5.5%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">5%</text>
+                    
+                    <text x="11.5%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">3</text>
+                    <text x="11.5%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">7%</text>
+                    
+                    <text x="22.5%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">4</text>
+                    <text x="22.5%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">15%</text>
+                    
+                    <text x="57.5%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">1</text>
+                    <text x="57.5%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">5%</text>
+                    
+                    <text x="62.5%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">2</text>
+                    <text x="62.5%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">5%</text>
+                    
+                    <text x="67.5%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">3</text>
+                    <text x="67.5%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">5%</text>
+                    
+                    <text x="75%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">4</text>
+                    <text x="75%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">10%</text>
+                    
+                    <text x="85%" y="65%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">5</text>
+                    <text x="85%" y="75%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">10%</text>
+                    
+                </svg>
+            </div>
+
+            <p class="syllabus-desc"><a href="#assignments">Click here</a> to see more details about the assignments.</p>
 
             <h3>Homework Assignments (HW)</h3>
             <p class="syllabus-desc">Details on HW assignments are on the Canvas site for this course. Due dates for each assignment can be found on Canvas and on the course Schedule. Grading distributions can be found on the course Syllabus. Submit all HW assignments on Canvas. Unless indicated by the HW instructions, all HWs are to be completed individually.</p>
@@ -167,6 +172,7 @@
             <p class="syllabus-desc"><strong>Accommodations for students with disabilities</strong>. If you are a student with learning needs that require special accommodation, contact the Office of Disability Services (often referred to as ADAPTS) at http://disabilityservices.gatech.edu/ as soon as possible to make an appointment to discuss your special needs and to obtain an accommodations letter. Please also e-mail your instructor as soon as possible in order to set up a time to discuss your learning needs.</p>
             <p class="syllabus-desc"><strong>Student Support Services</strong>. In your time at Georgia Tech, you may find yourself in need of support. <a href="https://www.cc.gatech.edu/~aendert3/resources/StudentSupport.pdf">Here</a>, you will find some resources to support you both as a student and as a person.</p>
 
+            <p style="text-align: right; margin-top: 20px;"><a href="#" style="font-size: 0.9em;">↑ Back to Top</a></p>
         </section>
 
         <section id="schedule">
@@ -335,12 +341,12 @@
                     <tr>
                         <td rowspan="2">14</td>
                         <td>04/13</td>
-                        <td style="font-weight: bold; color: #B288C0;">[Prototype Presentation] & Visualization Authoring</td>
+                        <td style="font-weight: bold;"><span style="color: #B288C0;">[Prototype - Presentation]</span> & <span style="color: #84A98C;">Visualization Authoring</span></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>04/15</td>
-                        <td style="font-weight: bold; color: #B288C0;">[Prototype Presentation] & D3: Geo</td>
+                        <td style="font-weight: bold;"><span style="color: #B288C0;">[Prototype - Presentation]</span> & <span style="color: #1282A2;">D3: Geo</span></td>
                         <td>HW4</td>
                     </tr>
                     <tr>
@@ -362,6 +368,8 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <p style="text-align: right; margin-top: 20px;"><a href="#" style="font-size: 0.9em;">↑ Back to Top</a></p>
         </section>
 
         <section id="readings">
@@ -381,13 +389,15 @@
                     <!-- Papers will be populated by JavaScript -->
                 </tbody>
             </table>
+            
+            <p style="text-align: right; margin-top: 20px;"><a href="#" style="font-size: 0.9em;">↑ Back to Top</a></p>
         </section>
 
         <section id="assignments">
-            <h2>Assignments</h2>
+            <h1>Assignments</h1>
 
-            <h3>Homeworks</h3>
-            <p><strong>HW 1: Web Stack</strong> - <em>Due: 2/6/2026 by 11:59 PM EST</em></p>
+            <h2>Homeworks - 30%</h2>
+            <h3>HW 1: Web Stack - <em>Due: 2/6/2026 by 11:59 PM EST</em> - 3%</h3>
             <p class="syllabus-desc">For this assignment, you will practice using web stack basics and create a web page. For this, you have two options for what this page should be about: this course or a personal page for yourself. You only have to pick and do one of these. Do not do both. The description for both is below.</p>
 
             <p><strong>Option 1: Single web page for this course</strong></p>
@@ -401,18 +411,170 @@
                     <li>When descriptions of HW assignments are not yet available, just put "details TBD"</li>
                 </ol>
                 <li>Use Javascript to add elements dynamically based on data. Instead of repeating elements and content in static HTML pages, use JavaScript to manipulate the DOM to add papers dynamically based on a data file.</li>
+                <ol class="assignment-desc">
+                    <li>Instead of creating a list for all the papers in static HTML, we have a data file for the paper information in a CSV. Use this CSV and parse it using JavaScript to add the elements dynamically to the readings list as part of your webpage. Note that this CSV file is from previous terms and may not match the current reading list, so please feel free to update them but it's not required.</li>
+                    <li><a href="https://gatech.instructure.com/courses/495474/files/69655149?wrap=1">Reading List (CSV)</a></li>
+                </ol>
                 <li>Use SVG to create some sort of visual element to show the grade distribution (instead of the simple table/list on the site now)</li>
             </ol>
 
-            <h3>Reading Reflections</h3>
+            <p><strong>Option 2: Create a personal webpage for yourself</strong></p>
+            <p class="syllabus-desc">For this option, your task is to create a webpage for yourself as a researcher. As I'm sure some of you have seen, there are lots of those around used by our colleagues. Some of you may even already have one! More on that below.</p>
+            <p>For this page, your goal is to create a single page that shares important information about yourself as a researcher. If you select this option, the requirements for this page include:</p>
+            <ol class="assignment-desc">
+                <li>Create a single, scrollable web page with categories about you as a researcher. At a minimum, these should be: About (with information about you), Publications (with a list of publications), Research Interests (with a list of interests that you have regarding the research you work on)</li>
+                <li>Use JavaScript to set up a way to populate your research papers from a data file. Similar to step 2 in Option 1 above, use JavaScript to dynamically add publications to your publication list based on a data file. The format of the file is up to you. </li>    
+                <li>Add some form of SVG to the webpage to show some aspect of your information in visual form (or for design purposes)</li>
+            </ol>
 
-            <h3>Research Prototype</h3>
+            <p class="syllabus-desc"><em>Note: If you already have a web page, you are welcome to use it. However, it must have the components described above (at a minimum). Also, site that are created from other tools (e.g., Wordpress) are not allowed for this assignment (and they likely will not fit the requirements).</em></p>
+            <p class="syllabus-desc"><strong>What to submit:</strong> You should put all the files for your webpage into a single folder, <strong>name that folder using your GTID</strong>,  then create a .zip from the folder. Turn in this .zip. We will unzip this, host the root folder, and test your submission. <em>Hint: be careful not to hard-code any paths relative to your machine. Use paths relative to the directory.</em></p>
+     
+            <h3>HW 2: D3 Charts - <em>Due: 3/6/2026 by 11:59 PM EST</em> - 5%</h3>
+            <p class="syllabus-desc"><em>TBD</em></p>
+
+            <h3>HW 3: Interaction - <em>Due: 4/3/2026 by 11:59 PM EST</em> - 7%</h3>
+            <p class="syllabus-desc"><em>TBD</em></p>
+
+            <h3>HW 4: Putting it All Together - <em>Due: 4/17/2026 by 11:59 PM EST</em> - 15%</h3>
+            <p class="syllabus-desc"><em>TBD</em></p>
+
+            <h2>Reading Reflections - 10%</h2>
+            <h3>Overview</h3>
+            <p class="syllabus-desc">Throughout the semester, you will complete three reading reflections. These reflections aim to deepen your understanding of visualization research papers and serve as examples for writing your own research proposal.</p>
+            <p>Each reflection has a different focus, aligning with the various parts of your research proposal (parts 1-3). Here are some general guidelines for all reflections:</p>
+            <ul class="syllabus-desc">
+                <li>Don't just repeat the paper. </li>
+                <li>Consider the pattern of <strong><em>summary -> interpret -> reflect</em></strong> for the key points of the paper. That means that you should identify one or more key points made in the paper, interpret what these mean, and then reflect more broadly on them. </li>
+                <li>Useful to end your reflection document with open-ended research questions, open discussion, etc. </li>
+            </ul>
+            <p class="syllabus-desc">You may choose to write a reflection on the paper you present or another one; the choice is yours.</p>
+
+            <h3>Reading Reflection - 1 - <em>Due: 1/30/2026 by 11:59 PM EST</em></h3>
+            <p>This assignment focuses on the research idea of the paper. Consider the following:</p>
+            <ul class="syllabus-desc">
+                <li>What did the authors do?</li>
+                <li>How did the authors motivate this work? For example, how is it done today, and what are the limitations of current practices? </li>
+                <li>What was the authors' approach, and how did they convince others of its success?</li>
+            </ul>
+            <p class="syllabus-desc">Remember, do not simply repeat the content. Use the <strong><em>summary -> interpret -> reflect</em></strong> pattern. Discuss what the authors did well and what could be improved.</p>
+            <p class="syllabus-desc">Consider this process as a way to learn how to write your <strong>Prototype Part 1</strong> assignment. Taking the paper you read as an example.</p>
+            <p class="syllabus-desc"><strong>Which paper to read:</strong> Choose one paper from the entire reading list. The chosen paper should be different from the papers you use in the other two reading reflections.</p>
+            <p class="syllabus-desc"><strong>What to submit:</strong>  Submit a PDF of your reflection, 1-2 pages, single-spaced, single-column, with a reasonable font size (~12pt).</p>
+
+            <h3>Reading Reflection - 2 - <em>Due: 2/20/2026 by 11:59 PM EST</em></h3>
+            <p>This individual assignment focuses on the literature review section of the paper. While you should briefly describe the research idea, there's no need for extensive detail. Your reflection should include:</p>
+            <ul class="syllabus-desc">
+                <li><strong>Research Idea:</strong> What was the research idea, and why is it novel and significant? (Briefly)</li>
+                <li><strong>Research Idea:</strong></li>
+                <ul class="syllabus-desc">
+                    <li>What existing work is related to the research idea?</li>
+                    <li>What different research directions or sub-areas are described by the authors? Are these comprehensive? Why might another research direction (e.g., X) not be included?</li>
+                    <li>What are the representative works closely related to this research? What did they accomplish, and how do they relate to this research idea? Why there is still the need to carry out this work in such contexts? </li>
+                </ul>
+            </ul>
+            <p class="syllabus-desc">Remember, do not simply repeat the content. Use the <strong><em>summary -> interpret -> reflect</em></strong> pattern. Discuss what the authors did well and what could be improved.</p>
+            <p class="syllabus-desc">Consider this process as a way to learn how to write your <strong>Prototype Part 2</strong> assignment. Taking the paper you read as an example.</p>
+            <p class="syllabus-desc"><strong>Which paper to read:</strong> Choose one paper from the entire reading list. The chosen paper should be different from the papers you use in the other two reading reflections.</p>
+            <p class="syllabus-desc"><strong>What to submit:</strong>  Submit a PDF of your reflection, 1-2 pages, single-spaced, single-column, with a reasonable font size (~12pt).</p>
+
+            <h3>Reading Reflection - 3 - <em>Due: 3/13/2026 by 11:59 PM EST</em></h3>
+            <p class="syllabus-desc"><em>TBD</em></p>
+
+            <h2>Research Prototype - 35%</h2>
+            <h3>Overview</h3>
+            <p class="syllabus-desc">The goal of this assignment group (research prototype) is to give you an end-to-end experience of a visualization research project.</p>
+            <p class="syllabus-desc">You will write a complete proposal for a potential new research project in information visualization, and produce a preliminary research prototype.</p>
+            <p class="syllabus-desc">Largely speaking, there are two major parts involved in almost any research project: Ideation (parts 1-2) and Implementation (parts 3-5).</p>
+            <p>To complete this proposal, follow these steps:</p>
+            <ol class="assignment-desc">
+                <li><strong>Initial Ideation & Literature Review:</strong> Develop an initial (broad) research project idea with a clear goal, motivation, and contribution. Then conduct a thorough literature review to highlight the novelty and significance of your topic compared to existing work.</li>
+                <li><strong>Polished Ideation:</strong> Narrow down the scope of your research project idea based on the literature review. Make it clear about its <em>novelty</em> and <em>significance</em> of your proposed work.</li>
+                <li><strong>Method and Plan:</strong> Create a comprehensive research plan, detailing the methods and setup for your project.</li>
+                <li><strong>Prototype:</strong> Implement the research plan.</li>
+            </ol>
+            <p class="syllabus-desc">By completing these steps, you'll have an almost-ready project that could lead to a conference submission, such as the <a href="https://ieeevis.org/year/2025/info/call-participation/shortpapers" target="_blank">IEEE VIS Short Paper track</a>. You could also use it for an independent study or a PhD project in visualization. Of course, continuing with your proposed project is up to you.</p>
+            
+            <p><strong>Individual or Team:</strong> You can choose to complete the research prototype individually or as a team (with maximum of 3 students).</p>
+            <p class="syllabus-desc">Please sign up your team using the spreadsheet: <a href="https://gtvault-my.sharepoint.com/:x:/g/personal/yyang3057_gatech_edu/IQCaxkHxhtUdQqiD2mUHmb_AATZXUFz0V-6RRoYq3Ib09q0?e=y4YcGa">CS7450-Spring26-PrototypeTeamSignUp.xlsx</a>.</p>
+            
+            <p class="syllabus-desc">If you decide to work as a team, in the first submission, a "team agreement" needs to be submitted, including details about how and when to collaborate. For example, the answers to the following questions:</p>
+            <ul class="syllabus-desc">
+                <li>Who is the team leader?</li>
+                <li>How will you communicate?</li>
+                <li>How/when will you meet?</li>
+                <li>How will you collaborate on implementation?</li>
+                <li>How will you deal with non-performing members?</li>
+            </ul>
+            <p class="syllabus-desc">Only the team leader needs to submit for all prototype assignment submissions.</p>
+
+            <h3>Prototype Part 1 - Initial Ideation & Literature Review - <em>Due: 2/13/2026 by 11:59 PM EST</em> - 5%</h3>
+            <p class="syllabus-desc">For Part 1, you need to write the first draft of "introduction" and "related work" sections of a research paper to describe your research idea, and what is the current state-of-the-art.</p>
+            <p class="syllabus-desc">Start by considering how to generate a strong research idea with a scope achievable in 1-2 semesters. Aim for proposals that are neither too simple nor overly complex.</p>
+            <p class="syllabus-desc">A good place to start for this is to think about which "type" of research (and thus proposal) you want to focus on.</p>
+            <ul class="syllabus-desc">
+                <li><strong>New Technique:</strong> Identify a gap for a new visualization or interaction technique. Describe this gap and how your work will address it, including design goals and sketches.</li>
+                <li><strong>New User Study:</strong> Identify a knowledge gap in visualization that needs a well-designed study. Outline the gap, research questions, and methodology.</li>
+                <li><strong>New Domain Tool:</strong> Consider a domain where visualization could enhance workflow. Describe the existing workflow and how visualization can help.</li>
+            </ul>
+            <p class="syllabus-desc">The readings in the first three topics focus on one of these types respectively. There are other "types," but these above should get you started. If you are interested in other types, take a look at the <a href="https://ieeevis.org/year/2025/info/call-participation/area-model" target="_blank">Six VIS Areas</a> defined by the IEEE VIS paper submission process. Here is another <a href="https://cmci.colorado.edu/visualab/papers/19-CGA-ContributionTypes.pdf" target="_blank">magazine-styled article explaining various visualization research contributions</a>.</p>
+            <p class="syllabus-desc">After identify a broad research idea, it's essential to conduct a thorough literature review of existing work related to your research idea. This helps ensure your idea remains novel and that you're not reinventing the wheel.</p>
+            
+            <p><strong>Steps for Conducting a Literature Review:</strong></p>
+            <ol class="assignment-desc">
+                <li>Identify 2-3 relevant sub-directions. It is always a good idea to divide and conquer, which also makes your literature review more structured.</li>
+                <li>Search for papers. Considering the following tips:</li>
+                <ul class="syllabus-desc">
+                    <li>Prioritize papers from reputable venues: <a href="https://eagereyes.org/blog/2013/a-guide-to-the-quality-of-different-visualization-venues">A Guide to the Quality of Different Visualization Venues</a>.</li>
+                    <li>Use the "source" filter from Google Scholar, e.g., <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=network+visualization+source%3A%22Transactions+on+Visualization+and+Computer+Graphics%22&btnG=">limit papers from TVCG</a>.</li>
+                </ul>
+                <li>Read the searched papers.</li>
+                <ul class="syllabus-desc">
+                    <li>Before reading the full paper, do a quick skim (e.g., reading the abstract and figures) to make sure it is worthy reading.</li>
+                </ul>
+                <li>Summarize them in a good narrative.</li>
+            </ol>
+            <p class="syllabus-desc">You should read <strong>at least 10</strong> relevant papers and include the discussion of them in your report.</p>
+            
+            <p class="syllabus-desc"><strong>Evaluation:</strong> Your proposal will be graded on clarity, thoughtfulness, and articulation.</p>
+            <p class="syllabus-desc"><strong>Writing Tip:</strong> You are also expected to submit a "Reading Reflection" at the same time in a separate assignment. Using your selected paper as an example. Write a similar "introduction" and "related work" for this assignment.</p>
+            <p class="syllabus-desc"><strong>Submission Guidelines:</strong> Submit a 1-2 page document in double-column conference format (title required, no abstract needed) as a PDF. Use the following template for formatting: <a href="https://tc.computer.org/vgtc/publications/conference/">IEEE Template</a>.</p>
+            <p class="syllabus-desc">Please also include your team agreement as a separate page that DOES NOT need to follow the template.</p>
+
+            <h3>Prototype Part 2 - Polished Ideation & Expanded Literature Review - <em>Due: 2/27/2026 by 11:59 PM EST</em> - 5%</h3>
+            <p class="syllabus-desc">Oftentimes, after an initial literature review round, researchers want to polish their proposed research idea. Researchers now have a more comprehensive understanding of what has been done in the direction.</p>
+            <p class="syllabus-desc">The goal of this part is to make your research idea more specific and concrete, usually with a narrower scope to highlight its novelty. Another goal is to obtain a solid understanding of the significance of your proposed project, and articulate it well.</p>
+            
+            <p><strong>What to do:</strong> First, expand your literature review, including at least 20 papers in total now, and discuss them in your "related work" section now. Then, revise your "introduction" section to make it crystal-clear about the following questions:</p>
+            <ol class="assignment-desc">
+                <li>What are you trying to do? Articulate your objectives using absolutely no jargon.</li>
+                <li>How is it done today, and what are the limits of current practice?</li>
+                <li>What is new in your approach and why do you think it will be successful?</li>
+                <li>Who cares? If you are successful, what difference will it make?</li>
+            </ol>
+            <p class="syllabus-desc">Making sure, the <strong>novelty</strong> and <strong>significance</strong> of your proposed idea is clearly articulated and convincing.</p>
+            
+            <p class="syllabus-desc"><strong>Writing Tip:</strong> take your research reflection assignment as a chance to do a deep analysis of a modal paper.</p>
+            
+            <p class="syllabus-desc"><strong>Submission Guidelines:</strong> We want you to submit two things:</p>
+            <ol class="assignment-desc">
+                <li>IEEE format report. Update the content and submit it.</li>
+                <li>A 2-min video explaining your ideas, covering the answers to the four questions aforementioned.</li>
+            </ol>
+            <p class="syllabus-desc">Zip these two files, and submit them together.</p>
+
+            <h3>Prototype Part 3 - Method & Plan - <em>Due: 3/13/2026 by 11:59 PM EST</em> - 5%</h3>
+            <p class="syllabus-desc"><em>TBD</em></p>
+
+            <h3>Prototype Part 4 - Prototype 1 - <em>Due: 4/10/2026 by 11:59 PM EST</em> - 10%</h3>
+            <p class="syllabus-desc"><em>TBD</em></p>
+
+            <h3>Prototype Part 5 - Prototype Final - <em>Due: 4/24/2026 by 11:59 PM EST</em> - 10%</h3>
+            <p class="syllabus-desc"><em>TBD</em></p>
+
+            <p style="text-align: right; margin-top: 20px;"><a href="#" style="font-size: 0.9em;">↑ Back to Top</a></p>
         </section>
     </main>
-    
-    <footer>
-        <p>&copy; 2026 My Webpage</p>
-    </footer>
     
     <script src="script.js"></script>
 </body>
