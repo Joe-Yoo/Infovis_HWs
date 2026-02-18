@@ -72,8 +72,8 @@ h2 {
 } */
  
 #syllabus h2 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 #syllabus h3 {
@@ -88,6 +88,7 @@ ul.syllabus-desc {
 ol.assignment-desc {
     margin-left: 2rem;
     list-style-type: decimal;
+    margin-bottom: 1rem;
 }
 
 ol.assignment-desc ol {
