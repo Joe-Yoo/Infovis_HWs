@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  background: #f2f2f7;
+}
+
+#chart {
+  width: 900px;
+  margin: 24px auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 12px;
+}
+
+.axis text {
+  font-size: 12px;
+  fill: #6e6e73;
+}
+
+.axis path,
+.axis line {
+  stroke: #d1d1d6;
+}
+
+.bar {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.bar:hover {
+  opacity: 0.85;
+}
+
+.bar.dimmed {
+  opacity: 0.35;
+}
+
+.tooltip {
+  position: fixed;
+  pointer-events: none;
+  padding: 8px 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
