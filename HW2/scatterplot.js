@@ -90,25 +90,7 @@ function updateScatterplot(year, month) {
         .attr("r", 4)
         .style("fill", d => getWeatherColor(d.Weather))
         .style("stroke", "black")
-        .style("stroke-width", "0.5px")
-        .on("mouseover", function(event, d) {
-            // console.log(d.Dewpoint + " " + d.Pressure + " " + d.Weather);
-            tooltip
-                .html(`<strong>${d.Dewpoint}</strong><br>Value: ${d.Pressure}%`)
-                .classed("visible", true);
-        })
-        .on("mousemove", (event) => {
-            const pad = 15;
-
-            // Move the tooltip as we move our mouse
-            tooltip
-                .style("left", (event.pageX + pad) + "px")
-                .style("top", (event.pageY + pad) + "px");
-        })
-        .on("mouseout", function(event, d) {
-            // console.log("test left");
-            tooltip.classed("visible", false);
-        });
+        .style("stroke-width", "0.5px");
 
 
     scatter_svg.append("text")
