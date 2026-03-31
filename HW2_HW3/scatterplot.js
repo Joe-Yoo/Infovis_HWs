@@ -149,3 +149,5 @@ d3.select("#month-select-scatter").on("change", function() {
     var year = yearValue === "all" ? "all" : +yearValue;
     updateScatterplot(year, month);
 });
+
+// I used the digimon scatterplot lab for help lol
