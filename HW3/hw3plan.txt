@@ -1,0 +1,28 @@
+Plan
+
+Layout: well structured/visually balaned layout
+- everything to fit in the page without scrolling
+- 4 boxes
+    - Top left: bar chart
+    - Top right: line graph
+        Connect top visualizations, make it top half
+    - Bottom left: scatterplot 
+    - Bottom right: calendar heatplot
+        Connect bottom visualizations as its own section/make it bottom half
+
+Tooltip:
+- Probably a hover feature for all visualizations
+
+Reconfigurations
+- Kinda already done that with the dropdown
+    - Top Half: dropdown for year, (get rid of all years, probably not necessary now)
+    - Bottom Half: Keep year and month selector, blur out corresponding calendar heatplot data points
+
+Brushing and Linking:
+- Bottom half, draw a box on scatterplot, highlight corresponding data points in calendar heatplot
+
+Animation/transition:
+- Top half: bar chart animated length change, line graph animated data change?
+- Bottom half: mostly fades for everythign
+
+Other stuff

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lab 6 Demo</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div>
+            <!-- Super simple HTML this time! -->
+            <div id="chart-container">
+                <h1>Energy Drink Nutrition</h1>
+                <!-- Control area for searching by brand name -->
+                <div class="controls">
+                    <span class="axis-label">Search Brand: </span>
+                    <input type="text" id="search" placeholder="Type name...">
+                </div>
+                <!-- Legend so the user knows what the colors mean -->
+                <div class="legend-container">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #27ae60;"></div>
+                        <span>Sugar-Free</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #e67e22;"></div>
+                        <span>Normal</span>
+                    </div>
+                </div>
+                <!-- Container for both of our charts -->
+                <div id="container">
+                    <!-- Keeps the dropdown controls with the chart -->
+                    <div class="chart-wrapper">
+                        <div id="scatterplot"></div>
+                        <div class="dropdown-area">
+                            <label>X-Axis:</label>
+                            <select id="select-x-scatter"></select>
+                            <br>
+                            <label>Y-Axis:</label>
+                            <select id="select-y-scatter"></select>
+                        </div>
+                    </div>
+
+                    <!-- Keeps the dropdown control with the chart -->
+                    <div class="chart-wrapper">
+                        <div id="barchart"></div>
+                        <div class="dropdown-area">
+                            <label>Bar Length (X-Axis):</label>
+                            <select id="select-x-bar"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
