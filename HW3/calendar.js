@@ -1,6 +1,6 @@
 // static calendar
 function drawCalendar(data) {
-    const cellSize = 15;
+    const cellSize = 13;
     const yearHeight = cellSize * 7 + 30;
     const years = [2020, 2021, 2022];
 
@@ -14,7 +14,7 @@ function drawCalendar(data) {
 
     const svg = d3.select("#calendar-svg")
         .append("svg")
-        .attr("width", 53 * cellSize + 50)
+        .attr("width", width + padding)
         .attr("height", years.length * (yearHeight + 20) + 60)
 
     const yearGroups = svg.selectAll("g.year")
@@ -85,7 +85,7 @@ function drawCalendar(data) {
         .text("20°F");
 
     legend_heatmap.append("text")
-        .attr("x", legendWidth)
+        .attr("x", legend_width)
         .attr("y", 22)
         .attr("font-size", "10px")
         .attr("text-anchor", "end")

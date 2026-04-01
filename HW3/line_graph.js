@@ -32,7 +32,7 @@ function updateLineGraph(year) {
         .range([0, width]);
 
     const y = d3.scaleLinear()
-        .domain([d3.min(data, d => d.low) - 5, d3.max(data, d => d.high) + 5])
+        .domain([0, 105])
         .range([height, 0]);
 
     line_svg.append("g")
@@ -109,9 +109,8 @@ function drawLineGraph(data) {
     updateLineGraph(2020);
 }
 
-d3.select("#year-select-line").on("change", function() {
-    const year = +this.value;
-    updateLineGraph(year);
+d3.select("#shared-year-select").on("change.line", function() {
+    updateLineGraph(+this.value);
 });
 
 // I think it'll be cool to display avg monthly max and min temperatures per month in this graph.

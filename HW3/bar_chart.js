@@ -63,12 +63,11 @@ function updateBarChart(year) {
         .attr("fill", "steelblue");
 }
 
-function drawBarChart(data, year = 'all') {
+function drawBarChart(data) {
     processMonthlyPrecipData(data);
-    updateBarChart(year);
+    updateBarChart(2020);
 }
 
-d3.select("#year-select").on("change", function() {
-    const year = this.value === "all" ? "all" : +this.value;
-    updateBarChart(year);
+d3.select("#shared-year-select").on("change.bar", function() {
+    updateBarChart(+this.value);
 });

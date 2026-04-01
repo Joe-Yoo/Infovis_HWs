@@ -11,57 +11,61 @@
     </head>
     <body>
         <main id="charts">
-            <div id="bar-chart">
-                <h2>Average Monthly Precipitation in Inches (2020 - 2022)</h2>
-                <select id="year-select">
-                    <option value="all">All Years</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                </select>
-                <div id="bar-chart-svg"></div>
+            <div id="top-section">
+                <div id="year-control">
+                    <label for="shared-year-select">Year</label>
+                    <select id="shared-year-select">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+
+                <div id="bar-chart">
+                    <h2>Average Monthly Precipitation in Inches (2020 - 2022)</h2>
+                    <div id="bar-chart-svg"></div>
+                </div>
+
+                <div id="line-graph">
+                    <h2>Daily High & Low Temperature by Year</h2>
+                    <div id="line-graph-svg"></div>
+                </div>
             </div>
 
-            <div id="scatterplot">
-                <h2>Dewpoint vs. Pressure Scatterplot</h2>
-                <select id="year-select-scatter">
-                    <option value="all">All Years</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                </select>
-                <select id="month-select-scatter">
-                    <option value="all">All Months</option>
-                    <option value="0">January</option>
-                    <option value="1">February</option>
-                    <option value="2">March</option>
-                    <option value="3">April</option>
-                    <option value="4">May</option>
-                    <option value="5">June</option>
-                    <option value="6">July</option>
-                    <option value="7">August</option>
-                    <option value="8">September</option>
-                    <option value="9">October</option>
-                    <option value="10">November</option>
-                    <option value="11">December</option>
+            <div id="bottom-section">
+                <div id="scatter-controls">
+                    <select id="year-select-scatter">
+                        <option value="all">All Years</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                    <select id="month-select-scatter">
+                        <option value="all">All Months</option>
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                </div>
 
-                </select>
-                <div id="scatterplot-svg"></div>
-            </div>
+                <div id="scatterplot">
+                    <h2>Dewpoint vs. Pressure Scatterplot</h2>
+                    <div id="scatterplot-svg"></div>
+                </div>
 
-            <div id="line-graph">
-                <h2>Daily High & Low Temperature by Year</h2>
-                <select id="year-select-line">
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                </select>
-                <div id="line-graph-svg"></div>
-            </div>
-
-            <div id="calendar">
-                <h2>Daily Temperature Heatmap</h2>
-                <div id="calendar-svg"></div>
+                <div id="calendar">
+                    <h2>Daily Temperature Heatmap</h2>
+                    <div id="calendar-svg"></div>
+                </div>
             </div>
         </main>
 

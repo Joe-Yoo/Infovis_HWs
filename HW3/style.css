@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    overflow-y: auto;
+    overflow-x: auto;
+    background-color: #7C9EB2;
+}
+
+#charts {
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: auto auto;
+    row-gap: 16px;
+    padding: 16px;
+}
+
+#top-section,
+#bottom-section {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    outline: 3px solid black;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+#year-control {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#year-control select {
+    font-size: 20px;
+    padding: 6px 10px;
+}
+
+#bar-chart {
+    grid-column: 1;
+    grid-row: 2;
+    overflow: visible;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+#line-graph {
+    grid-column: 2;
+    grid-row: 2;
+    overflow: visible;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+#scatter-controls {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#scatter-controls select {
+    font-size: 16px;
+    padding: 4px 8px;
+}
+
+#scatterplot {
+    grid-column: 1;
+    grid-row: 2;
+    overflow: visible;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+#calendar {
+    grid-column: 2;
+    grid-row: 2;
+    overflow: visible;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+h2 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+select {
+    margin-bottom: 4px;
+    margin-right: 4px;
+}
