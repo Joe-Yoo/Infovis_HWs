@@ -3,19 +3,20 @@ Plan
 <==== Already Done ====> 
 Layout: well structured/visually balaned layout
 - everything to fit in the page without scrolling
-- 4 boxes
-    - Top left: bar chart
-    - Top right: line graph
-        Connect top visualizations, make it top half
-    - Bottom left: scatterplot 
-    - Bottom right: calendar heatplot
-        Connect bottom visualizations as its own section/make it bottom half
 
 Reconfigurations
 - Kinda already done that with the dropdown
     - Top Half: dropdown for year, (get rid of all years, probably not necessary now)
     - Bottom Half: Keep year and month selector, blur out corresponding calendar heatplot data points
 
+New Charts
+- Pie chart: weather ratio in each month
+    - Tool tip that shows percentage on hover
+- Area chart
+    - line graph showing the difference between average wind speed and max wind speed.
+    - opacity encoding for how big of a difference it is.
+- Box and Whiskers plot - Average monthly high and low temperatures
+    - brushing and linking in this one -> heatmap
 
 <==== Todo ====>
 Tooltip:

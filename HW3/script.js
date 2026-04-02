@@ -20,8 +20,8 @@ d3.csv("atl_weather_20to22.csv").then(data => {
         TempMin: +d.TempMin
     }));
 
-    drawBarChart(data);
-    drawScatterplot(data);
     drawLineGraph(data);
+    drawBoxPlot(data);
+    drawPieChart(data);
     drawCalendar(data);
 });

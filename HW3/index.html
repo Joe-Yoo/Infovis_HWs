@@ -12,36 +12,9 @@
     <body>
         <main id="charts">
             <div id="top-section">
-                <div id="year-control">
-                    <label for="shared-year-select">Year</label>
-                    <select id="shared-year-select">
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                    </select>
-                </div>
-
-                <div id="bar-chart">
-                    <h2>Average Monthly Precipitation in Inches (2020 - 2022)</h2>
-                    <div id="bar-chart-svg"></div>
-                </div>
-
-                <div id="line-graph">
-                    <h2>Daily High & Low Temperature by Year</h2>
-                    <div id="line-graph-svg"></div>
-                </div>
-            </div>
-
-            <div id="bottom-section">
-                <div id="scatter-controls">
-                    <select id="year-select-scatter">
-                        <option value="all">All Years</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                    </select>
-                    <select id="month-select-scatter">
-                        <option value="all">All Months</option>
+                <div id="top-controls">
+                    <label for="top-month-select">Month</label>
+                    <select id="top-month-select">
                         <option value="0">January</option>
                         <option value="1">February</option>
                         <option value="2">March</option>
@@ -55,11 +28,38 @@
                         <option value="10">November</option>
                         <option value="11">December</option>
                     </select>
+                    <label for="top-year-select">Year</label>
+                    <select id="top-year-select">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
                 </div>
 
-                <div id="scatterplot">
-                    <h2>Dewpoint vs. Pressure Scatterplot</h2>
-                    <div id="scatterplot-svg"></div>
+                <div id="line-graph">
+                    <h2>Daily Wind Speed by Month</h2>
+                    <div id="line-graph-svg"></div>
+                </div>
+
+                <div id="pie-chart">
+                    <h2>Weather Distribution by Month</h2>
+                    <div id="pie-chart-svg"></div>
+                </div>
+            </div>
+
+            <div id="bottom-section">
+                <div id="bottom-controls">
+                    <label for="box-year-select">Year</label>
+                    <select id="box-year-select">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+
+                <div id="box-plot">
+                    <h2>Monthly High & Low Temperature Distribution</h2>
+                    <div id="box-svg"></div>
                 </div>
 
                 <div id="calendar">
@@ -71,9 +71,9 @@
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="script.js"></script>
-        <script src="bar_chart.js"></script>
-        <script src="scatterplot.js"></script>
         <script src="line_graph.js"></script>
+        <script src="box_and_whiskers.js"></script>
+        <script src="pie_chart.js"></script>
         <script src="calendar.js"></script>
     </body>
 </html>
