@@ -118,6 +118,18 @@ function initLineGraph() {
         dotMax.attr("opacity", 0);
     }
 
+    function positionTooltip(event) {
+        const rect = container.getBoundingClientRect();
+        const tipWidth = tooltip.node().offsetWidth;
+        const cursorLeft = event.clientX - rect.left;
+        const left = (cursorLeft + 12 + tipWidth > container.offsetWidth)
+            ? cursorLeft - tipWidth - 12
+            : cursorLeft + 12;
+        tooltip
+            .style("left", left + "px")
+            .style("top", (event.clientY - rect.top - 28) + "px");
+    }
+
     areaPath
         .on("mouseover", () => tooltip.classed("visible", true))
         .on("mousemove", (event) => {
@@ -126,18 +138,15 @@ function initLineGraph() {
             const d = lineGraphState.currentData.find(p => p.day === day);
             if (!d) return;
             showDots(d);
-            const rect = container.getBoundingClientRect();
-            tooltip
-                .html(`<strong>Day ${d.day}</strong><br>Max Wind Speed: ${d.maxSpeed} mph<br>Wind Speed: ${d.windspeed} mph<br>Diff: ${(d.maxSpeed - d.windspeed).toFixed(1)} mph`)
-                .style("left", (event.clientX - rect.left + 12) + "px")
-                .style("top", (event.clientY - rect.top - 28) + "px");
+            tooltip.html(`<strong>Day ${d.day}</strong><br>Max Wind Speed: ${d.maxSpeed} mph<br>Wind Speed: ${d.windspeed} mph<br>Diff: ${(d.maxSpeed - d.windspeed).toFixed(1)} mph`);
+            positionTooltip(event);
         })
         .on("mouseout", () => { hideDots(); tooltip.classed("visible", false); });
 
     lineGraphState = {
         line_svg, x, y, windLine, maxWindLine, area,
         areaGradient, areaPath, windPath, maxPath,
-        tooltip, container, showDots, hideDots,
+        tooltip, container, showDots, hideDots, positionTooltip,
         currentData: []
     };
 }
@@ -147,7 +156,7 @@ function updateLineGraph(year, month) {
 
     const { line_svg, x, y, windLine, maxWindLine, area,
             areaGradient, areaPath, windPath, maxPath,
-            tooltip, container, showDots, hideDots } = lineGraphState;
+            tooltip, showDots, hideDots, positionTooltip } = lineGraphState;
 
     const data = (windData[year] && windData[year][month]) || [];
     lineGraphState.currentData = data;
@@ -182,12 +191,7 @@ function updateLineGraph(year, month) {
                 .html(`<strong>Day ${d.day}</strong><br>Max Wind Speed: ${d.maxSpeed} mph<br>Wind Speed: ${d.windspeed} mph<br>Diff: ${(d.maxSpeed - d.windspeed).toFixed(1)} mph`)
                 .classed("visible", true);
         })
-        .on("mousemove", (event) => {
-            const rect = container.getBoundingClientRect();
-            tooltip
-                .style("left", (event.clientX - rect.left + 12) + "px")
-                .style("top", (event.clientY - rect.top - 28) + "px");
-        })
+        .on("mousemove", (event) => { positionTooltip(event); })
         .on("mouseout", () => { hideDots(); tooltip.classed("visible", false); });
 }
 
