@@ -53,6 +53,7 @@ body {
     grid-column: 1;
     grid-row: 2;
     overflow: visible;
+    position: relative;
     background-color: white;
     border: 1px solid #ccc;
     padding: 8px;
@@ -62,9 +63,24 @@ body {
     grid-column: 2;
     grid-row: 2;
     overflow: visible;
+    position: relative;
     background-color: white;
     border: 1px solid #ccc;
     padding: 8px;
+}
+
+.tooltip {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    pointer-events: none;
+    display: none;
+    font-size: 13px;
+}
+
+.tooltip.visible {
+    display: block;
 }
 
 #box-plot {
