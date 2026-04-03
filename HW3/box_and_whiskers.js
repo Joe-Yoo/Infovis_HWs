@@ -90,6 +90,7 @@ function initBoxPlot() {
             const s = e.selection;
             if (!s) {
                 boxGroup.selectAll("g.box-group").style("opacity", 1);
+                boxState.selectedMonths = null;
                 updateCalendarHighlight(null, null);
                 return;
             }
@@ -105,12 +106,13 @@ function initBoxPlot() {
             boxGroup.selectAll("g.box-group").style("opacity", d =>
                 selectedMonths.has(d.month) ? 1 : 0.15
             );
+            boxState.selectedMonths = selectedMonths;
             updateCalendarHighlight(selectedMonths, boxState.currentYear);
         });
 
     box_svg.append("g").attr("class", "brush").call(brush);
 
-    boxState = { boxGroup, x, y, currentYear: 2020 };
+    boxState = { boxGroup, x, y, currentYear: 2020, selectedMonths: null };
 }
 
 function updateBoxPlot(year) {
@@ -120,6 +122,10 @@ function updateBoxPlot(year) {
 
     const { boxGroup, x, y } = boxState;
     boxState.currentYear = year;
+
+    if (boxState.selectedMonths !== null) {
+        updateCalendarHighlight(boxState.selectedMonths, year);
+    }
 
     const yearData = Object.values(boxData[year]);
     const t = d3.transition().duration(600).ease(d3.easeCubicInOut);
