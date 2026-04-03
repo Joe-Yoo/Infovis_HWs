@@ -24,7 +24,7 @@ body {
     display: grid;
     grid-template-columns: max-content max-content;
     grid-template-rows: auto auto;
-    gap: 10px;
+    gap: 0;
     outline: 3px solid black;
     border-radius: 4px;
     padding: 10px;
@@ -88,6 +88,7 @@ body {
     grid-column: 1;
     grid-row: 2;
     overflow: visible;
+    position: relative;
     background-color: white;
     border: 1px solid #ccc;
     padding: 8px;

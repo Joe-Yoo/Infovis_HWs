@@ -38,7 +38,7 @@ function initLineGraph() {
 
     line_svg.append("g").call(d3.axisLeft(y));
 
-    const windLine   = d3.line().x(d => x(d.day)).y(d => y(d.windspeed));
+    const windLine = d3.line().x(d => x(d.day)).y(d => y(d.windspeed));
     const maxWindLine = d3.line().x(d => x(d.day)).y(d => y(d.maxSpeed));
     const area = d3.area().x(d => x(d.day)).y0(d => y(d.windspeed)).y1(d => y(d.maxSpeed));
 
@@ -56,7 +56,6 @@ function initLineGraph() {
         .attr("fill", "none").attr("stroke", "black").attr("stroke-width", 1.5)
         .attr("stroke-dasharray", "5,4");
 
-    // Legend (static)
     const lineLegendItems = [
         { label: "Windspeed", dasharray: null },
         { label: "Max Windspeed", dasharray: "5,4" }
@@ -78,8 +77,10 @@ function initLineGraph() {
 
     const gradLegendWidth = 150;
     const gradLegendHeight = 10;
+
     const gradLegend = outerSvg.append("g")
         .attr("transform", `translate(${legendX + 145}, ${margin.top - 16})`);
+
     const gradLegendDef = defs.append("linearGradient")
         .attr("id", "legend-gradient").attr("x1", "0%").attr("x2", "100%");
     gradLegendDef.append("stop").attr("offset", "0%")
@@ -107,7 +108,7 @@ function initLineGraph() {
     const container = document.getElementById("line-graph");
 
     const dotWind = line_svg.append("circle").attr("r", 4).attr("fill", "black").attr("opacity", 0);
-    const dotMax  = line_svg.append("circle").attr("r", 4).attr("fill", "black").attr("opacity", 0);
+    const dotMax = line_svg.append("circle").attr("r", 4).attr("fill", "black").attr("opacity", 0);
 
     function showDots(d) {
         dotWind.attr("cx", x(d.day)).attr("cy", y(d.windspeed)).attr("opacity", 1);
@@ -122,11 +123,9 @@ function initLineGraph() {
         const rect = container.getBoundingClientRect();
         const tipWidth = tooltip.node().offsetWidth;
         const cursorLeft = event.clientX - rect.left;
-        const left = (cursorLeft + 12 + tipWidth > container.offsetWidth)
-            ? cursorLeft - tipWidth - 12
-            : cursorLeft + 12;
-        tooltip
-            .style("left", left + "px")
+        const left = (cursorLeft + 12 + tipWidth > container.offsetWidth) ? cursorLeft - tipWidth - 12 : cursorLeft + 12;
+
+        tooltip.style("left", left + "px")
             .style("top", (event.clientY - rect.top - 28) + "px");
     }
 
@@ -136,7 +135,10 @@ function initLineGraph() {
             const [mx] = d3.pointer(event, line_svg.node());
             const day = Math.round(x.invert(mx));
             const d = lineGraphState.currentData.find(p => p.day === day);
-            if (!d) return;
+            if (!d) {
+                return;
+            }
+            
             showDots(d);
             tooltip.html(`<strong>Day ${d.day}</strong><br>Max Wind Speed: ${d.maxSpeed} mph<br>Wind Speed: ${d.windspeed} mph<br>Diff: ${(d.maxSpeed - d.windspeed).toFixed(1)} mph`);
             positionTooltip(event);

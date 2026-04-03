@@ -1,13 +1,16 @@
+var calAvgTemp = null;
+var calColor = null;
+
 // static calendar
+// HW 3 update - just taken from HW2, but added some animation + connected to the box and whiskers plot
 function drawCalendar(data) {
     const cellSize = 13;
     const yearHeight = cellSize * 7 + 30;
     const years = [2020, 2021, 2022];
 
-    // data processed here, taking the average of the temperatures
-    const avgTemp = d3.rollup(data, v => d3.mean(v, d => (d.TempMax + d.TempMin) / 2), d => d3.timeFormat("%Y-%m-%d")(d.Date));
+    calAvgTemp = d3.rollup(data, v => d3.mean(v, d => (d.TempMax + d.TempMin) / 2), d => d3.timeFormat("%Y-%m-%d")(d.Date));
 
-    const color = d3.scaleSequential()  
+    calColor = d3.scaleSequential()
         .domain([20, 95])
         .interpolator(t => d3.interpolateRdYlBu(1 - t))
         .clamp(true);
@@ -42,11 +45,7 @@ function drawCalendar(data) {
             .attr("height", cellSize - 1)
             .attr("x", d => d3.timeWeek.count(d3.timeYear(d), d) * cellSize)
             .attr("y", d => d.getDay() * cellSize)
-            .attr("fill", d => {
-                const key = d3.timeFormat("%Y-%m-%d")(d);
-                const val = avgTemp.get(key);
-                return val !== undefined ? color(val) : "#eee";
-            })
+            .attr("fill", d => calCellColor(d, null, null))
             .attr("rx", 2);
     });
 
@@ -71,7 +70,7 @@ function drawCalendar(data) {
         .data(d3.range(0, 1.01, 0.1))
         .join("stop")
         .attr("offset", d => `${d * 100}%`)
-        .attr("stop-color", d => color(20 + d * 75));
+        .attr("stop-color", d => calColor(20 + d * 75));
 
     legend_heatmap.append("rect")
         .attr("width", legend_width)
@@ -90,6 +89,34 @@ function drawCalendar(data) {
         .attr("font-size", "10px")
         .attr("text-anchor", "end")
         .text("95°F");
+}
+
+function calCellColor(d, year, month) {
+    const key = d3.timeFormat("%Y-%m-%d")(d);
+    const val = calAvgTemp.get(key);
+    if (val === undefined) {
+        return "#eee";
+    }
+
+    const highlighted = year === null 
+        ||  (month instanceof Set ? d.getFullYear() === year && month.has(d.getMonth()) : d.getFullYear() === year && d.getMonth() === month);
+    
+    if (highlighted) {
+        return calColor(val);
+    }
+    
+    const rgb = d3.rgb(calColor(val));
+    const grey = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+    return d3.rgb(grey, grey, grey);
+}
+
+function updateCalendarHighlight(month, year) {
+    const t = d3.transition().duration(300).ease(d3.easeCubicInOut);
+    d3.select("#calendar-svg").selectAll("g.year").each(function() {
+        d3.select(this).selectAll("rect")
+            .transition(t)
+            .attr("fill", d => calCellColor(d, year ?? null, month));
+    });
 }
 
 // idea: calendar from 2020 -> 2022 displaying average temperature for each day. --> Heatmap!!

@@ -2,36 +2,56 @@ var weatherByMonth = {};
 var pieChartState = null;
 
 const legendItems = [
-    { label: "Sun",     color: "orange" },
-    { label: "Rain",    color: "steelblue" },
+    { label: "Sun", color: "orange" },
+    { label: "Rain", color: "steelblue" },
     { label: "Drizzle", color: "lightblue" },
-    { label: "Snow",    color: "white" }
+    { label: "Snow", color: "white" }
 ];
 
 const weatherOrder = ["Sun", "Rain", "Drizzle", "Snow"];
 
 function getWeatherColor(weather) {
-    if (!weather) return "orange";
+    if (!weather) {
+        return "orange";
+    }
     const w = weather.toLowerCase();
-    if (w.includes("snow"))    return "white";
-    if (w.includes("rain"))    return "steelblue";
-    if (w.includes("drizzle")) return "lightblue";
+    if (w.includes("snow")) {
+        return "white";
+    }
+    if (w.includes("rain")) {
+        return "steelblue";
+    }
+    if (w.includes("drizzle")) {
+        return "lightblue";
+    }
     return "orange";
 }
 
 function getWeatherLabel(weather) {
-    if (!weather) return "Sun";
+    if (!weather) {
+        return "Sun";
+    }
     const w = weather.toLowerCase();
-    if (w.includes("snow"))    return "Snow";
-    if (w.includes("rain"))    return "Rain";
-    if (w.includes("drizzle")) return "Drizzle";
+    if (w.includes("snow")) {
+        return "Snow";
+    }
+    if (w.includes("rain")) {
+        return "Rain";
+    }
+    if (w.includes("drizzle")) {
+        return "Drizzle";
+    }
     return "Sun";
 }
 
 function normalizeData(raw) {
     const counts = { Sun: 0, Rain: 0, Drizzle: 0, Snow: 0 };
-    raw.forEach(d => { counts[getWeatherLabel(d.weather)] += d.count; });
-    return weatherOrder.map(label => ({ weather: label, count: counts[label] }));
+    raw.forEach(d => {
+        counts[getWeatherLabel(d.weather)] += d.count;
+    });
+    return weatherOrder.map(label => ({
+        weather: label, count: counts[label]
+    }));
 }
 
 function processWeatherData(data) {
@@ -53,9 +73,9 @@ function processWeatherData(data) {
 }
 
 function initPieChart() {
-    const pieWidth  = width + padding;
+    const pieWidth = width + padding;
     const pieHeight = height + padding;
-    const radius    = Math.min(width, height) / 2;
+    const radius = Math.min(width, height) / 2;
 
     const pie_svg = d3.select("#pie-chart-svg")
         .append("svg")
@@ -88,14 +108,16 @@ function initPieChart() {
 }
 
 function updatePieChart(year, month) {
-    if (!pieChartState) initPieChart();
+    if (!pieChartState) {
+        initPieChart();
+    }
 
     const { pie_svg, pie, arc, tooltip } = pieChartState;
 
-    const raw   = (weatherByMonth[year] && weatherByMonth[year][month]) || [];
-    const data  = normalizeData(raw);
+    const raw = (weatherByMonth[year] && weatherByMonth[year][month]) || [];
+    const data = normalizeData(raw);
     const total = d3.sum(data, d => d.count);
-    const t     = d3.transition().duration(600).ease(d3.easeCubicInOut);
+    const t = d3.transition().duration(600).ease(d3.easeCubicInOut);
 
     pie_svg.selectAll("path")
         .data(pie(data), d => d.data.weather)

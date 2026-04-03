@@ -1,4 +1,5 @@
 var boxData = {};
+var boxState = null;
 
 function processBoxData(data) {
     const byYear = d3.group(data, d => d.Date.getFullYear());
@@ -10,9 +11,9 @@ function processBoxData(data) {
             const lows  = monthData.map(d => d.TempMin).sort(d3.ascending);
 
             function stats(arr) {
-                const q1  = d3.quantile(arr, 0.25);
+                const q1 = d3.quantile(arr, 0.25);
                 const med = d3.quantile(arr, 0.5);
-                const q3  = d3.quantile(arr, 0.75);
+                const q3 = d3.quantile(arr, 0.75);
                 const iqr = q3 - q1;
                 const min = d3.max([d3.min(arr), q1 - 1.5 * iqr]);
                 const max = d3.min([d3.max(arr), q3 + 1.5 * iqr]);
@@ -22,39 +23,29 @@ function processBoxData(data) {
             boxData[year][month] = {
                 month,
                 high: stats(highs),
-                low:  stats(lows)
+                low: stats(lows)
             };
         });
     });
 }
 
-function updateBoxPlot(year) {
-    d3.select("#box-svg").selectAll("*").remove();
-
-    const box_svg = d3.select("#box-svg")
+function initBoxPlot() {
+    const svg = d3.select("#box-svg")
         .append("svg")
         .attr("width", width + padding)
-        .attr("height", height + padding)
-        .append("g")
+        .attr("height", height + padding);
+
+    const box_svg = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    const yearData = Object.values(boxData[year]);
-
-    const x = d3.scaleBand()
-        .domain(months)
-        .range([0, width])
-        .padding(0.3);
-
-    const y = d3.scaleLinear()
-        .domain([0, 105])
-        .range([height, 0]);
+    const x = d3.scaleBand().domain(months).range([0, width]).padding(0.3);
+    const y = d3.scaleLinear().domain([0, 105]).range([height, 0]);
 
     box_svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x));
 
-    box_svg.append("g")
-        .call(d3.axisLeft(y));
+    box_svg.append("g").call(d3.axisLeft(y));
 
     box_svg.append("text")
         .attr("x", width / 2)
@@ -71,77 +62,147 @@ function updateBoxPlot(year) {
         .attr("font-size", "12px")
         .text("Temperature (°F)");
 
-    const boxWidth = x.bandwidth() / 2 - 2;
-
-    const series = [
-        { key: "high", color: "red",       offset: -x.bandwidth() / 4 },
-        { key: "low",  color: "steelblue", offset:  x.bandwidth() / 4 }
-    ];
-
-    yearData.forEach(d => {
-        const xBase = x(months[d.month]);
-        series.forEach(({ key, color, offset }) => {
-            const s = d[key];
-            const cx = xBase + x.bandwidth() / 2 + offset;
-
-            box_svg.append("line")
-                .attr("x1", cx).attr("x2", cx)
-                .attr("y1", y(s.min)).attr("y2", y(s.q1))
-                .attr("stroke", color).attr("stroke-width", 1.5);
-
-            box_svg.append("line")
-                .attr("x1", cx).attr("x2", cx)
-                .attr("y1", y(s.q3)).attr("y2", y(s.max))
-                .attr("stroke", color).attr("stroke-width", 1.5);
-
-            box_svg.append("line")
-                .attr("x1", cx - boxWidth / 2).attr("x2", cx + boxWidth / 2)
-                .attr("y1", y(s.min)).attr("y2", y(s.min))
-                .attr("stroke", color).attr("stroke-width", 1.5);
-
-            box_svg.append("line")
-                .attr("x1", cx - boxWidth / 2).attr("x2", cx + boxWidth / 2)
-                .attr("y1", y(s.max)).attr("y2", y(s.max))
-                .attr("stroke", color).attr("stroke-width", 1.5);
-
-            box_svg.append("rect")
-                .attr("x", cx - boxWidth / 2)
-                .attr("y", y(s.q3))
-                .attr("width", boxWidth)
-                .attr("height", y(s.q1) - y(s.q3))
-                .attr("fill", color)
-                .attr("opacity", 0.3)
-                .attr("stroke", color)
-                .attr("stroke-width", 1.5);
-
-            box_svg.append("line")
-                .attr("x1", cx - boxWidth / 2).attr("x2", cx + boxWidth / 2)
-                .attr("y1", y(s.med)).attr("y2", y(s.med))
-                .attr("stroke", color).attr("stroke-width", 2);
-        });
-    });
-
     const legendItems = [
         { label: "High Temp", color: "red" },
         { label: "Low Temp",  color: "steelblue" }
     ];
-
     const legend = box_svg.append("g")
         .attr("transform", `translate(${width - 100}, 10)`);
-
     legendItems.forEach((item, i) => {
         legend.append("rect")
             .attr("x", 0).attr("y", i * 20 - 6)
             .attr("width", 14).attr("height", 14)
             .attr("fill", item.color).attr("opacity", 0.5)
             .attr("stroke", item.color);
-
         legend.append("text")
             .attr("x", 20).attr("y", i * 20)
             .attr("dominant-baseline", "middle")
             .attr("font-size", "12px")
             .text(item.label);
     });
+
+    const boxGroup = box_svg.append("g").attr("class", "boxes");
+
+    // lab 8!
+    const brush = d3.brush()
+        .extent([[0, 0], [width, height]])
+        .on("brush end", (e) => {
+            const s = e.selection;
+            if (!s) {
+                boxGroup.selectAll("g.box-group").style("opacity", 1);
+                updateCalendarHighlight(null, null);
+                return;
+            }
+            const [[x0, y0], [x1, y1]] = s;
+            const selectedMonths = new Set();
+            boxGroup.selectAll("g.box-group").each(function(d) {
+                const centerX = x(months[d.month]) + x.bandwidth() / 2 + d.offset;
+                const topY = y(d.s.max);
+                const bottomY = y(d.s.min);
+                if (x0 <= centerX && centerX <= x1 && y0 <= bottomY && topY <= y1)
+                    selectedMonths.add(d.month);
+            });
+            boxGroup.selectAll("g.box-group").style("opacity", d =>
+                selectedMonths.has(d.month) ? 1 : 0.15
+            );
+            updateCalendarHighlight(selectedMonths, boxState.currentYear);
+        });
+
+    box_svg.append("g").attr("class", "brush").call(brush);
+
+    boxState = { boxGroup, x, y, currentYear: 2020 };
+}
+
+function updateBoxPlot(year) {
+    if (!boxState) {
+        initBoxPlot();
+    }
+
+    const { boxGroup, x, y } = boxState;
+    boxState.currentYear = year;
+
+    const yearData = Object.values(boxData[year]);
+    const t = d3.transition().duration(600).ease(d3.easeCubicInOut);
+
+    const series = [
+        { key: "high", color: "red", offset: -x.bandwidth() / 4 },
+        { key: "low", color: "steelblue", offset:  x.bandwidth() / 4 }
+    ];
+    const boxWidth = x.bandwidth() / 2 - 2;
+
+    const flatData = [];
+    yearData.forEach(d => {
+        series.forEach(({ key, color, offset }) => {
+            flatData.push({ month: d.month, key, color, offset, s: d[key] });
+        });
+    });
+
+    const groups = boxGroup.selectAll("g.box-group")
+        .data(flatData, d => `${d.month}-${d.key}`)
+        .join("g")
+        .attr("class", "box-group");
+
+    const cx = d => x(months[d.month]) + x.bandwidth() / 2 + d.offset;
+
+    groups.selectAll("line.lower-whisker")
+        .data(d => [d])
+        .join("line")
+        .attr("class", "lower-whisker")
+        .attr("stroke", d => d.color).attr("stroke-width", 1.5)
+        .attr("x1", cx).attr("x2", cx)
+        .transition(t)
+        .attr("y1", d => y(d.s.min))
+        .attr("y2", d => y(d.s.q1));
+
+    groups.selectAll("line.upper-whisker")
+        .data(d => [d])
+        .join("line")
+        .attr("class", "upper-whisker")
+        .attr("stroke", d => d.color).attr("stroke-width", 1.5)
+        .attr("x1", cx).attr("x2", cx)
+        .transition(t)
+        .attr("y1", d => y(d.s.q3))
+        .attr("y2", d => y(d.s.max));
+
+    groups.selectAll("line.cap-min")
+        .data(d => [d])
+        .join("line")
+        .attr("class", "cap-min")
+        .attr("stroke", d => d.color).attr("stroke-width", 1.5)
+        .attr("x1", d => cx(d) - boxWidth / 2).attr("x2", d => cx(d) + boxWidth / 2)
+        .transition(t)
+        .attr("y1", d => y(d.s.min)).attr("y2", d => y(d.s.min));
+
+    groups.selectAll("line.cap-max")
+        .data(d => [d])
+        .join("line")
+        .attr("class", "cap-max")
+        .attr("stroke", d => d.color).attr("stroke-width", 1.5)
+        .attr("x1", d => cx(d) - boxWidth / 2).attr("x2", d => cx(d) + boxWidth / 2)
+        .transition(t)
+        .attr("y1", d => y(d.s.max)).attr("y2", d => y(d.s.max));
+
+    groups.selectAll("rect.iqr-box")
+        .data(d => [d])
+        .join("rect")
+        .attr("class", "iqr-box")
+        .attr("fill", d => d.color).attr("opacity", 0.3)
+        .attr("stroke", d => d.color).attr("stroke-width", 1.5)
+        .attr("x", d => cx(d) - boxWidth / 2)
+        .attr("width", boxWidth)
+        .transition(t)
+        .attr("y", d => y(d.s.q3))
+        .attr("height", d => y(d.s.q1) - y(d.s.q3));
+
+    groups.selectAll("line.median")
+        .data(d => [d])
+        .join("line")
+        .attr("class", "median")
+        .attr("stroke", d => d.color).attr("stroke-width", 2)
+        .attr("x1", d => cx(d) - boxWidth / 2).attr("x2", d => cx(d) + boxWidth / 2)
+        .transition(t)
+        .attr("y1", d => y(d.s.med)).attr("y2", d => y(d.s.med));
+
 }
 
 function drawBoxPlot(data) {
